@@ -6,16 +6,24 @@
 - **Structure du Projet** - 100% - Mise en place de l'architecture initiale Next.js avec Tailwind CSS
 
 ## Module en cours de développement
-- **Authentification & PWA** - Mise en place de la structure de base du frontend
-  - Création des composants Header et Footer
-  - Implémentation de la page d'accueil
-  - Configuration Tailwind CSS et PWA de base
+- **Authentification & PWA** - 70% - Mise en place des fonctionnalités d'authentification et PWA
+  - ✅ Création des composants Header et Footer
+  - ✅ Implémentation de la page d'accueil
+  - ✅ Configuration Tailwind CSS et structure de base
+  - ✅ Pages de connexion et d'inscription
+  - ✅ Page de profil utilisateur
+  - ✅ Utilitaires d'authentification
+  - ✅ Utilitaires PWA
+  - ✅ Manifest.json pour PWA
+  - ⏳ Configuration complète du service worker pour mode hors-ligne
+  - ⏳ Tests d'authentification
+  - ⏳ Tests sur appareils mobiles
 
 ## Prochaines tâches
-- Implémentation des interfaces de connexion et d'inscription
-- Configuration de l'authentification
-- Développement des profils utilisateurs
-- Configuration complète du service worker pour PWA
+- Finaliser la configuration du service worker
+- Mettre en place les tests d'authentification
+- Améliorer le support des notifications push
+- Implémenter les redirections et garde-fous d'authentification
 
 ## Dépendances à surveiller
 - Le module Événements dépendra de l'authentification pour les inscriptions aux événements
@@ -23,9 +31,10 @@
 - Le module PWA affecte l'ensemble de l'expérience utilisateur, en particulier pour le mode hors-ligne
 
 ## Prochaine transition prévue
-- Vers le module **Événements & Hackathons** après complétion des fonctionnalités d'authentification et profils (estimé: semaine 3)
+- Vers le module **Événements & Hackathons** après finalisation des fonctionnalités d'authentification PWA (estimé: fin de semaine prochaine)
 
 ## Notes de développement
-- La structure actuelle suit l'approche pages/ de Next.js, à migrer vers App Router dans un sprint ultérieur
-- L'intégration avec Supabase Auth sera évaluée en parallèle de l'implémentation des pages d'authentification
-- Optimisations PWA pour connectivité limitée à prioritiser conformément au backlog 
+- Les utilitaires d'authentification simulent le comportement avec localStorage/sessionStorage, à remplacer par une véritable API d'authentification (Supabase, Firebase, etc.)
+- Les utilitaires PWA sont prêts mais nécessitent l'implémentation d'un vrai service worker
+- Structure de navigation entre modules respectée avec commentaires appropriés dans chaque fichier
+- La migration vers Next.js App Router sera planifiée après l'établissement des fonctionnalités de base 

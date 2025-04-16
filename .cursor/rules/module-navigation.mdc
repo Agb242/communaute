@@ -1,3 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
 # Règle de Navigation Entre Modules
 
 Cette règle définit comment naviguer de manière cohérente entre les différents modules du projet InnoHub Africa.
