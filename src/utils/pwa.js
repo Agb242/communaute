@@ -21,7 +21,7 @@ export const isPWASupported = () => {
   if (typeof window !== 'undefined') {
     return 'serviceWorker' in navigator && 
            'PushManager' in window &&
-           'BeforeInstallPromptEvent' in window;
+           window.BeforeInstallPromptEvent !== undefined;
   }
   return false;
 };
@@ -38,18 +38,20 @@ export const isOnline = () => {
 
 /**
  * Vérifie si le contenu est mis en cache et disponible hors ligne
- * Dans une implémentation réelle, cela vérifierait le cache du service worker
  */
-export const isContentCached = (url) => {
-  // Simulation - dans une application réelle, cela interrogerait le cache
-  const commonCachedPaths = [
-    '/',
-    '/auth/login',
-    '/auth/register',
-    '/auth/profile',
-  ];
+export const isContentCached = async (url) => {
+  if (typeof window === 'undefined' || !('caches' in window)) {
+    return false;
+  }
   
-  return commonCachedPaths.some(path => url.includes(path));
+  try {
+    const cache = await caches.open('innohub-africa-v1');
+    const cachedResponse = await cache.match(url);
+    return cachedResponse !== undefined;
+  } catch (error) {
+    console.error('Erreur lors de la vérification du cache:', error);
+    return false;
+  }
 };
 
 /**
@@ -69,26 +71,24 @@ export const listenToConnectionChanges = (onlineCallback, offlineCallback) => {
 };
 
 /**
- * Simule l'enregistrement du service worker
- * Dans une implémentation réelle, cela enregistrerait le service worker
+ * Enregistre le service worker
  */
 export const registerServiceWorker = async () => {
   if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
     try {
-      // Dans une application réelle, cela enregistrerait un vrai service worker
-      console.log('Service Worker serait enregistré ici');
-      // const registration = await navigator.serviceWorker.register('/service-worker.js');
-      return true;
+      const registration = await navigator.serviceWorker.register('/service-worker.js');
+      console.log('Service Worker enregistré avec succès:', registration.scope);
+      return registration;
     } catch (error) {
       console.error('Erreur lors de l\'enregistrement du Service Worker:', error);
-      return false;
+      return null;
     }
   }
-  return false;
+  return null;
 };
 
 /**
- * Simule la demande d'autorisation pour les notifications push
+ * Demande l'autorisation pour les notifications push
  */
 export const requestPushPermission = async () => {
   if (typeof window !== 'undefined' && 'Notification' in window) {
@@ -117,6 +117,16 @@ export const queueForSync = (action, data) => {
       timestamp: Date.now()
     });
     localStorage.setItem('syncQueue', JSON.stringify(syncQueue));
+    
+    // Déclencher la synchronisation en arrière-plan si possible
+    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+      navigator.serviceWorker.ready.then(registration => {
+        registration.sync.register('sync-pending-actions').catch(err => {
+          console.error('Erreur lors de l\'enregistrement de la synchronisation:', err);
+        });
+      });
+    }
+    
     return true;
   }
   return false;
@@ -152,4 +162,39 @@ export const processSyncQueue = async () => {
   // Supprimer la file d'attente après traitement
   localStorage.removeItem('syncQueue');
   return true;
+};
+
+/**
+ * Précharge le contenu pour l'accès hors ligne
+ */
+export const precacheContent = async (urls) => {
+  if (typeof window === 'undefined' || !('caches' in window)) {
+    return false;
+  }
+  
+  try {
+    const cache = await caches.open('innohub-africa-v1');
+    await cache.addAll(urls);
+    return true;
+  } catch (error) {
+    console.error('Erreur lors de la mise en cache du contenu:', error);
+    return false;
+  }
+};
+
+/**
+ * Vérifie si le service worker est actif
+ */
+export const isServiceWorkerActive = async () => {
+  if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
+    return false;
+  }
+  
+  try {
+    const registration = await navigator.serviceWorker.getRegistration();
+    return registration !== undefined && (registration.active !== null);
+  } catch (error) {
+    console.error('Erreur lors de la vérification du service worker:', error);
+    return false;
+  }
 }; 
