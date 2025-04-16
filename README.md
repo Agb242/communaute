@@ -27,6 +27,7 @@ Ce dépôt contient les backlogs détaillés pour chaque module du projet, suiva
 | **Cours Pratiques** | [backlog-courses.md](backlog-courses.md) | Contenu éducatif et suivi de progression |
 | **Administration** | [backlog-admin.md](backlog-admin.md) | Gestion de la plateforme et des contenus |
 | **Infrastructure & DevOps** | [backlog-infrastructure.md](backlog-infrastructure.md) | Environnements, CI/CD et monitoring |
+| **Analyse de Faisabilité** | [backlog-feasibility.md](backlog-feasibility.md) | Évaluation technique, opérationnelle et financière |
 
 ## 📆 Planning de développement
 
@@ -62,6 +63,30 @@ Le développement est planifié sur **8 semaines** selon les phases suivantes:
 - 10+ partenariats universitaires
 - Score Lighthouse PWA > 90
 - Temps de chargement < 3s sur 3G
+
+## 💰 Analyse de Faisabilité
+
+Une analyse complète de la faisabilité technique, opérationnelle et financière est disponible dans le fichier [backlog-feasibility.md](backlog-feasibility.md). Cette analyse confirme que:
+
+- ✅ Le projet est techniquement réalisable avec la stack choisie
+- ✅ L'équipe dispose des compétences nécessaires (avec quelques besoins en formation DevOps)
+- ✅ Le projet est financièrement viable, sous réserve d'obtention du financement initial
+
+Le ROI estimé après 3 ans est de 1.2x à 1.8x, avec un seuil de rentabilité prévu entre 18 et 24 mois.
+
+## 🧭 Navigation & Progression du Projet
+
+Pour suivre la progression du développement et maintenir la cohérence entre les modules:
+
+- Le fichier [CURRENT_STATE.md](CURRENT_STATE.md) à la racine fournit un aperçu de l'état actuel du développement
+- Une règle de navigation entre modules est définie dans [.cursor/rules/module-navigation.mdc](.cursor/rules/module-navigation.mdc)
+- Chaque fichier de code contient des commentaires indiquant son module et ses dépendances
+
+Ces pratiques garantissent que le développement reste cohérent même lors des transitions entre modules.
+
+## 🔄 Publication sur GitHub
+
+Toutes les modifications et mises à jour de ce projet doivent être publiées sur le compte GitHub **Agb242**. Des règles détaillées sur le processus de publication sont disponibles dans le fichier [.cursor/rules/github-push.mdc](.cursor/rules/github-push.mdc).
 
 ## 👥 Contribuer
 

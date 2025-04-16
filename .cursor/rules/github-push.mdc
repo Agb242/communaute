@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Règle de Publication GitHub
+
+Cette règle définit le processus de publication du code sur GitHub.
+
+## Compte GitHub Cible
+
+Tous les commits et modifications doivent être publiés sur le compte GitHub de l'utilisateur **Agb242**.
+
+## Processus de Publication
+
+1. Avant chaque fin de session de développement, assurez-vous que les changements locaux sont:
+   - Commités avec un message descriptif
+   - Poussés vers le dépôt distant sur le compte Agb242
+
+2. Utilisez la commande suivante pour configurer le dépôt distant:
+   ```bash
+   git remote set-url origin https://github.com/Agb242/innohub-africa.git
+   ```
+
+3. Pour publier les modifications, utilisez:
+   ```bash
+   git push -u origin main
+   ```
+
+4. Vérifiez que la publication a réussi en consultant le dépôt sur GitHub:
+   https://github.com/Agb242/innohub-africa
+
+## Branches
+
+- Utilisez la branche `main` pour les versions stables du code
+- Créez des branches de fonctionnalités pour le développement actif (format: `feature/nom-fonctionnalite`)
+- Créez des branches de correction pour les bugs (format: `fix/description-bug`)
+
+## Messages de Commit
+
+Suivez la convention suivante pour les messages de commit:
+- `feat: description` pour les nouvelles fonctionnalités
+- `fix: description` pour les corrections de bugs
+- `docs: description` pour les mises à jour de documentation
+- `chore: description` pour les tâches de maintenance
+
+## Fréquence de Publication
+
+- Au minimum, publiez une fois par jour de travail
+- Publiez après chaque milestone significatif
+- Publiez avant de terminer votre session de travail
+
+Cette règle est obligatoire et doit être suivie pour tout le développement du projet InnoHub Africa. 

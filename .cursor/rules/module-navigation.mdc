@@ -1,0 +1,82 @@
+# Règle de Navigation Entre Modules
+
+Cette règle définit comment naviguer de manière cohérente entre les différents modules du projet InnoHub Africa.
+
+## Principes Fondamentaux
+
+1. **Conservation du Contexte**
+   - Toujours expliciter le module actuel en début de commentaire
+   - Indiquer clairement lors d'un changement de contexte entre modules
+   - Référencer les décisions précédentes lors d'une évolution
+
+2. **Traçabilité des Évolutions**
+   - Noter les dépendances entre modules modifiés
+   - Documenter brièvement la raison du changement de module
+   - Maintenir une liste des modifications en cours par module
+
+## Flux de Navigation Recommandés
+
+### Parcours de Développement Principal
+
+1. **Authentification → PWA → Événements → Défis → Cours**
+   - Séquence logique qui respecte les dépendances techniques
+   - Permet de construire progressivement l'expérience utilisateur
+   - Suit la priorité MoSCoW établie dans les backlogs
+
+### Parcours Administration & Infrastructure
+
+1. **Authentification → Admin → Infrastructure**
+   - Assure que les fonctionnalités d'administration sont sécurisées
+   - Permet de mettre en place une infrastructure adaptée aux besoins identifiés
+
+## Documentation des Transitions
+
+Lors du passage d'un module à un autre, documenter systématiquement:
+
+```
+// MODULE: [Module précédent] → [Module actuel]
+// RAISON: [Brève explication de la transition]
+// DÉPENDANCES: [Liste des modules/fichiers impactés]
+// ÉTAT PRÉCÉDENT: [Référence au dernier état fonctionnel]
+```
+
+## Règles de Changement de Contexte
+
+1. **Valider avant de changer**
+   - Tous les tests du module actuel doivent passer
+   - Documenter l'état actuel du module (% complété, fonctionnalités implémentées)
+   - Créer un point de sauvegarde (commit) avec message descriptif
+
+2. **Préparation du nouveau contexte**
+   - Lister les prérequis du nouveau module
+   - Vérifier les dépendances avec le module précédent
+   - Extraire et résumer les user stories pertinentes du backlog
+
+3. **Maintien du fil conducteur**
+   - Créer un fichier `CURRENT_STATE.md` à la racine qui trace l'évolution
+   - Mettre à jour ce fichier à chaque transition majeure
+
+## Format du fichier CURRENT_STATE.md
+
+```markdown
+# État Actuel du Développement - InnoHub Africa
+
+## Date de dernière mise à jour: [DATE]
+
+## Modules complétés
+- [Module 1] - [% complété] - [Fonctionnalités implémentées]
+- [Module 2] - [% complété] - [Fonctionnalités implémentées]
+
+## Module en cours de développement
+- [Module actuel] - [Tâches en cours]
+- [Prochaines étapes]
+
+## Dépendances à surveiller
+- [Module X] dépend de [Module Y] pour [fonctionnalité]
+- [Point d'attention particulier]
+
+## Prochaine transition prévue
+- Vers [Module suivant] après [condition]
+```
+
+Cette approche structurée garantit que le développement reste cohérent, même lorsqu'il évolue entre différents modules, et que le contexte global du projet est toujours préservé. 
