@@ -1,0 +1,157 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# PRD – InnoHub Africa
+Plateforme Communautaire Tech & Universitaire – Version MVP (Responsive & PWA)
+
+## 1. Objectif Principal
+Créer une plateforme web accessible sur mobile via un design responsive et/ou une Progressive Web App (PWA) pour connecter les communautés tech et universitaires en Afrique autour d'événements, hackathons, cours pratiques et défis techniques, favorisant ainsi l'innovation locale.
+
+## 2. Vision et Valeur Ajoutée
+- Connecter universités, étudiants, mentors et entreprises tech.
+- Faciliter l'organisation et la participation à des événements et hackathons.
+- Favoriser l'apprentissage par des cours pratiques et des défis techniques interactifs.
+- Offrir une expérience mobile fluide et accessible via PWA pour maximiser l'impact sur des équipements aux capacités variées.
+
+## 3. Fonctionnalités Prioritaires (MVP)
+
+### 3.1. Authentification & Profils Utilisateurs
+**But :** Permettre aux divers utilisateurs (étudiants, mentors, universités, entreprises) de s'inscrire, se connecter et gérer leur profil.
+
+**Sous-tâches détaillées :**
+
+*Conception UI/UX :*
+- Création des écrans d'inscription, connexion et réinitialisation du mot de passe.
+- Conception de la page « Mon Profil » avec options d'édition.
+
+*Back-end & Sécurité :*
+- Implémenter l'authentification (via Supabase Auth, Clerk ou Keycloak).
+- Gestion des rôles et sessions.
+
+*Base de données :*
+- Schéma utilisateur incluant email, identifiants, rôles, bio, compétences, badges.
+
+*Tests :*
+- Tests unitaires et d'intégration pour s'assurer de la robustesse de l'authentification.
+
+### 3.2. Design Responsive & Progressive Web App (PWA)
+**But :** Fournir une interface adaptée à tout type d'appareil (mobile, tablette, desktop) avec les avantages d'une PWA.
+
+**Sous-tâches détaillées :**
+
+*Design & Prototype :*
+- Réaliser des wireframes et maquettes pour toutes les résolutions d'écran.
+- Prototypes interactifs validant l'expérience utilisateur.
+
+*Développement Front-end :*
+- Implémenter avec Next.js et Tailwind CSS.
+- Intégrer une architecture responsive.
+
+*Configuration PWA :*
+- Créer manifest.json (icônes, thème, nom).
+- Développer et configurer un service worker pour le caching, le mode offline et les notifications push.
+
+*Tests :*
+- Validation sur plusieurs navigateurs et appareils via les outils de performance (ex. Lighthouse).
+
+### 3.3. Événements & Hackathons
+**But :** Permettre aux utilisateurs de consulter, s'inscrire et participer aux événements/hackathons.
+
+**Sous-tâches détaillées :**
+
+*Consultation :*
+- Page listant les événements avec filtres (date, type, localisation).
+- Pages de détails pour chaque événement avec description, lieu, date et participants.
+
+*Inscription et Notifications :*
+- Implémenter l'inscription via un bouton + confirmation par email.
+- Système de notifications push/email pour rappels.
+
+*Back-end et Admin :*
+- API REST pour CRUD sur les événements.
+- Outil d'administration pour créer et gérer les événements.
+
+### 3.4. Défis Techniques (Challenges)
+**But :** Offrir un catalogue de défis pour stimuler l'apprentissage pratique et la compétitivité.
+
+**Sous-tâches détaillées :**
+
+*Catalogue & Détails :*
+- Création d'une page listant les défis par catégories (web, IA, cloud, etc.).
+- Page de détails avec description, instructions et liens vers dépôt GitHub ou environnement cloud.
+
+*Soumission & Evaluation :*
+- Formulaire pour soumettre des solutions.
+- Système de scoring et mise à jour d'un classement en temps réel.
+
+*Feedback :*
+- Intégrer des commentaires et retours pour chaque défi.
+
+### 3.5. Cours Pratiques
+**But :** Mettre à disposition une bibliothèque de cours interactifs sous forme de vidéos et tutoriels pratiques.
+
+**Sous-tâches détaillées :**
+
+*Catalogue de Cours :*
+- Page listant les cours avec filtres par thème et niveau.
+- Intégration des vidéos via YouTube/Vimeo ou autre.
+
+*Suivi de Progression et Feedback :*
+- Système simple de suivi (statuts : "à faire", "en cours", "terminé").
+- Option de laisser une note ou commentaire sur les cours.
+
+*API Backend :*
+- Gestion du contenu et la progression via des endpoints sécurisés.
+
+### 3.6. Panneau d'Administration
+**But :** Permettre aux administrateurs de gérer la plateforme (utilisateurs, contenu, statistiques).
+
+**Sous-tâches détaillées :**
+
+*Gestion des Utilisateurs :*
+- Interface pour consulter, éditer, activer/désactiver et supprimer des comptes.
+
+*Gestion du Contenu :*
+- Interfaces pour créer, modifier et supprimer événements, défis et cours.
+
+*Dashboard et Rapports :*
+- Tableau de bord regroupant KPI, statistiques d'utilisation et export des données.
+
+*Sécurité et Accès :*
+- Mise en place de contrôles d'accès stricts pour les utilisateurs administrateurs.
+
+### 3.7. Infrastructure & DevOps
+**But :** Mettre en place une infrastructure fiable et automatiser les déploiements.
+
+**Sous-tâches détaillées :**
+
+*Containerisation :*
+- Configuration de Docker pour front-end, back-end et base de données.
+
+*CI/CD et Monitoring :*
+- Mise en place d'un pipeline de déploiement automatisé (GitHub Actions ou GitLab CI).
+- Outils de monitoring (Prometheus, Grafana) et sauvegardes régulières.
+
+*Documentation et Procédures :*
+- Documentation complète pour la configuration, le déploiement et la maintenance.
+
+## 4. Planning & Roadmap (MVP sur 2 mois)
+
+| Période | Objectifs & Sous-tâches prioritaires |
+|---------|--------------------------------------|
+| Semaine 1 | - Mise en place de l'environnement de développement (repo, Docker, CI/CD). <br> - Développement initial de l'authentification et des profils. |
+| Semaine 2 | - Conception et implémentation du design responsive et PWA. <br> - Tests sur diverses résolutions et configurations mobiles. |
+| Semaines 3-4 | - Développement du module Événements & Hackathons (listes, détails, inscriptions). <br> - Construction de l'outil d'administration partiel pour les événements. |
+| Semaine 5 | - Mise en place du module Défis Techniques (catalogue, soumission, scoring). |
+| Semaine 6 | - Intégration du module Cours Pratiques (catalogue, intégration vidéo, suivi de progression). <br> - Feedback utilisateur et ajustements. |
+| Semaines 7-8 | - Finalisation du panneau d'administration (gestion complète des contenus et utilisateurs). <br> - Finalisation de l'infrastructure CI/CD et du monitoring. <br> - Recueil des retours et lancement MVP. |
+
+## 5. Suivi des KPIs
+- Utilisateurs inscrits et profils complétés.
+- Taux de participation aux événements et hackathons.
+- Nombre et qualité des soumissions aux défis techniques.
+- Progression et complétion des cours.
+- Engagement général (durée des sessions, feedback). 

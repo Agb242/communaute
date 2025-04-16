@@ -1,0 +1,87 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Règles du Projet InnoHub Africa
+
+## Principes Fondamentaux
+
+1. **Focus Utilisateur Africain**
+   - Toutes les décisions doivent prendre en compte les réalités technologiques en Afrique (connectivité variable, diversité des appareils)
+   - L'interface doit être optimisée pour être performante même sur des connexions bas débit
+   - Prévoir un mode hors-ligne fonctionnel pour les fonctionnalités essentielles
+
+2. **Design Mobile-First & PWA Obligatoire**
+   - Concevoir d'abord pour les écrans mobiles, puis adapter aux plus grands écrans
+   - Implémenter toutes les caractéristiques PWA (manifest, service worker, installabilité)
+   - Tester sur des appareils Android d'entrée/milieu de gamme courants en Afrique
+
+3. **Architecture Modulaire & Évolutive**
+   - Concevoir chaque module de façon indépendante avec des interfaces claires
+   - Utiliser une architecture qui facilite l'ajout futur de fonctionnalités
+   - Documenter les API entre les modules pour faciliter le développement parallèle
+
+4. **Sécurité & Protection des Données**
+   - Respecter les principes RGPD même si non obligatoire dans certaines régions d'Afrique
+   - Minimiser les données collectées aux stricts besoins des fonctionnalités
+   - Chiffrer les données sensibles en transit et au repos
+
+## Règles de Développement
+
+1. **Technologies Imposées**
+   - Frontend: Next.js, Tailwind CSS
+   - Backend: Node.js ou Python (selon expertise équipe)
+   - Base de données: PostgreSQL
+   - Authentification: Supabase Auth, Clerk ou Keycloak
+   - Containerisation: Docker + Docker Compose
+
+2. **Qualité de Code**
+   - Tests unitaires obligatoires pour toute nouvelle fonctionnalité (couverture min. 70%)
+   - Code linting et formatting automatiques (ESLint, Prettier)
+   - Revue de code par au moins un autre développeur avant merge
+
+3. **Gestion de Version**
+   - Git Flow avec branches de fonctionnalités
+   - Commits atomiques avec messages descriptifs selon convention
+   - Versioning sémantique pour les releases
+
+4. **Documentation**
+   - Documentation API avec OpenAPI/Swagger
+   - README détaillé pour chaque module
+   - Commentaires de code pour complexités & décisions architecturales importantes
+
+## Règles de Collaboration
+
+1. **Communication**
+   - Stand-up quotidien de 15 minutes max
+   - Utilisation de Slack/Discord pour communication asynchrone
+   - Issues GitHub/GitLab comme source unique de vérité pour les tâches
+
+2. **Livrables & Deadlines**
+   - Définir les critères d'acceptation avant de commencer une tâche
+   - Respecter les deadlines du planning ou communiquer proactivement si problème
+   - Démonstration des fonctionnalités en fin de sprint
+
+3. **Feedback & Amélioration Continue**
+   - Rétrospective à la fin de chaque sprint (2 semaines)
+   - Itérations rapides basées sur les retours utilisateurs
+   - Partage des apprentissages et bonnes pratiques
+
+## KPIs & Métriques de Réussite
+
+1. **Performance Technique**
+   - Temps de chargement initial < 3s sur 3G
+   - Score Lighthouse PWA > 90
+   - Taille bundle JS < 300KB (initial load)
+
+2. **Engagement Utilisateur**
+   - Taux de conversion inscription > 30%
+   - Taux de rétention après 7 jours > 40%
+   - Temps moyen par session > 5 minutes
+
+3. **Objectifs Business**
+   - 500+ utilisateurs actifs mensuels après 2 mois
+   - 10+ partenariats universitaires
+   - 5+ événements organisés via la plateforme 

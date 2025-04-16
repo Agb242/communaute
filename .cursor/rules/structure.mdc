@@ -1,0 +1,159 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Structure du Projet InnoHub Africa
+
+## Architecture Globale
+
+```
+frontend/                      # Application frontend Next.js
+├── app/                       # Dossier App Router de Next.js
+│   ├── api/                   # Routes API (si nécessaire pour le SSR)
+│   ├── auth/                  # Pages d'authentification
+│   ├── events/                # Pages des événements
+│   ├── challenges/            # Pages des défis techniques
+│   ├── courses/               # Pages des cours
+│   ├── profile/               # Pages de profil utilisateur
+│   ├── admin/                 # Pages d'administration
+│   └── layout.tsx             # Layout principal de l'application
+├── components/                # Composants React réutilisables
+│   ├── auth/                  # Composants d'authentification
+│   ├── events/                # Composants liés aux événements
+│   ├── challenges/            # Composants liés aux défis
+│   ├── courses/               # Composants liés aux cours
+│   ├── profile/               # Composants de profil
+│   ├── ui/                    # Composants UI génériques
+│   └── admin/                 # Composants d'administration
+├── lib/                       # Bibliothèques et utilitaires
+│   ├── api.ts                 # Client API
+│   ├── auth.ts                # Utilitaires d'authentification
+│   └── utils.ts               # Fonctions utilitaires diverses
+├── hooks/                     # Hooks React personnalisés
+├── public/                    # Fichiers statiques
+│   ├── fonts/                 # Polices
+│   ├── images/                # Images
+│   └── manifest.json          # Manifest PWA
+├── styles/                    # Styles globaux
+└── middleware.ts              # Middleware Next.js (auth, etc.)
+
+backend/                       # API backend
+├── src/
+│   ├── auth/                  # Module d'authentification
+│   ├── users/                 # Module de gestion des utilisateurs
+│   ├── events/                # Module des événements
+│   ├── challenges/            # Module des défis techniques
+│   ├── courses/               # Module des cours
+│   ├── admin/                 # Module d'administration
+│   └── common/                # Code partagé entre les modules
+├── migrations/                # Migrations de base de données
+└── seeds/                     # Seeds pour données initiales
+
+infra/                         # Configuration infrastructure
+├── docker/                    # Configurations Docker
+├── k8s/                       # Configuration Kubernetes (si applicable)
+└── ci/                        # Configuration CI/CD
+
+docs/                          # Documentation
+├── api/                       # Documentation API
+├── guides/                    # Guides utilisateurs
+└── architecture/              # Documentation architecture
+```
+
+## Modules Principaux
+
+### 1. Module Authentification & Profils Utilisateurs
+- **Frontend**: `/app/auth/*`, `/app/profile/*`, `/components/auth/*`, `/components/profile/*`
+- **Backend**: `/src/auth/*`, `/src/users/*`
+- **Fonctionnalités**: Inscription, connexion, gestion des profils, rôles et permissions
+
+### 2. Module Design Responsive & PWA
+- **Frontend**: `/styles/*`, `/public/manifest.json`, `/components/ui/*`
+- **Fonctionnalités**: Styles responsifs, configuration PWA, composants UI réutilisables
+
+### 3. Module Événements & Hackathons
+- **Frontend**: `/app/events/*`, `/components/events/*`
+- **Backend**: `/src/events/*`
+- **Fonctionnalités**: Consultation et inscription aux événements, notifications
+
+### 4. Module Défis Techniques
+- **Frontend**: `/app/challenges/*`, `/components/challenges/*`
+- **Backend**: `/src/challenges/*`
+- **Fonctionnalités**: Catalogue de défis, soumission de solutions, évaluation
+
+### 5. Module Cours Pratiques
+- **Frontend**: `/app/courses/*`, `/components/courses/*`
+- **Backend**: `/src/courses/*`
+- **Fonctionnalités**: Catalogue de cours, suivi de progression, intégration vidéo
+
+### 6. Module Administration
+- **Frontend**: `/app/admin/*`, `/components/admin/*`
+- **Backend**: `/src/admin/*`
+- **Fonctionnalités**: Gestion des utilisateurs, contenu, statistiques
+
+### 7. Module Infrastructure & DevOps
+- **Dossier**: `/infra/*`
+- **Fonctionnalités**: Configuration Docker, pipeline CI/CD, monitoring
+
+## Technologies Clés
+
+### Frontend
+- **Framework**: Next.js 14+ (App Router)
+- **UI**: Tailwind CSS, Headless UI
+- **État**: React Query / SWR pour les données serveur
+- **Authentification**: Intégration avec Supabase Auth ou Clerk
+- **PWA**: next-pwa
+
+### Backend
+- **Framework**: Node.js avec Express ou NestJS (ou FastAPI si Python préféré)
+- **Base de données**: PostgreSQL avec Prisma ou TypeORM comme ORM
+- **Authentification**: JWT, OAuth 2.0
+- **Documentation API**: OpenAPI / Swagger
+
+### Infrastructure
+- **Containerisation**: Docker + Docker Compose
+- **CI/CD**: GitHub Actions
+- **Déploiement**: Vercel pour le frontend, conteneurs Docker pour le backend
+- **Monitoring**: Prometheus, Grafana
+
+## Flux de Données
+
+1. **Authentification**:
+   - L'utilisateur s'inscrit/se connecte via le frontend
+   - Les tokens JWT sont stockés de manière sécurisée (HttpOnly cookies)
+   - Le middleware d'authentification valide les tokens pour les routes protégées
+
+2. **Données Utilisateur**:
+   - Les profils sont chargés après authentification
+   - Mise en cache côté client avec React Query/SWR + revalidation
+   - Mise à jour optimiste des données pour expérience fluide
+
+3. **Contenu (Événements, Défis, Cours)**:
+   - Chargement paginé avec filtres
+   - Mise en cache local via PWA pour mode hors-ligne
+   - Synchronisation différée des données lors de reconnexion
+
+## Considérations Techniques Spécifiques
+
+1. **Performance Mobile**:
+   - Lazy loading des images et composants
+   - Bundle splitting pour optimiser la taille du JS initial
+   - Préchargement stratégique des ressources critiques
+
+2. **Résilience Hors-ligne (PWA)**:
+   - Service worker avec stratégies de cache adaptatives
+   - File d'attente pour les actions en mode hors-ligne (inscriptions, commentaires)
+   - Synchronisation intelligente à la reconnexion
+
+3. **Sécurité**:
+   - HTTPS obligatoire
+   - Protection CSRF
+   - Validation des entrées côté client et serveur
+   - Rate limiting pour prévenir les attaques par force brute
+
+4. **Accessibilité**:
+   - Conforme WCAG AA
+   - Interface utilisable sans JavaScript (dégradé gracieux)
+   - Support des lecteurs d'écran
+   - Navigation au clavier complète 
